@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Member $member
  * @property Member[] $members
  */
+
 class Team extends Model
 {
     /**
@@ -33,7 +34,7 @@ class Team extends Model
      */
     public function member()
     {
-        return $this->belongsTo('App\Member', 'leader_id');
+        return $this->belongsTo('App\Models\Member', 'leader_id');
     }
 
     /**

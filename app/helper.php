@@ -101,7 +101,7 @@ if (!function_exists('adminUrl'))
 {
     function adminUrl($url = null)
     {
-        return  url('/' . $url);
+        return  url('/be-group-system' . $url);
     }
 }
 

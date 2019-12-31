@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int $project_id
+ * @property int $designer
+ * @property int $developer
  * @property string $design_start
  * @property string $design_finish
  * @property string $development_start
@@ -28,7 +30,7 @@ class ProjectTimeline extends Model
     /**
      * @var array
      */
-    protected $fillable = ['project_id', 'design_start', 'design_finish', 'development_start', 'development_finish', 'notes', 'created_at', 'updated_at'];
+    protected $fillable = ['project_id', 'design_start', 'design_finish', 'design_approved', 'development_start', 'development_finish', 'notes', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -37,4 +39,16 @@ class ProjectTimeline extends Model
     {
         return $this->belongsTo('App\Models\Project');
     }
+
+
+    public function designerMember()
+    {
+        return $this->belongsTo('App\Models\Member', 'designer');
+    }
+
+    public function developerMember()
+    {
+        return $this->belongsTo('App\Models\Member', 'developer');
+    }
+
 }

@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $updated_at
  * @property Client $client
  * @property Status $status
+ * @property Status $project_type
  * @property ProjectTimeline[] $projectTimelines
  */
 class Project extends Model
@@ -81,4 +82,5 @@ class Project extends Model
     {
         return $this->hasMany('App\Models\ProjectTimeline');
     }
+
 }

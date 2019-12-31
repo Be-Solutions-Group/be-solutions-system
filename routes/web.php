@@ -15,11 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
 
-    /* -- Return Statistics Page -- */
-    Route::get('/', 'DashboardController@index');
 
-});
-
-Auth::routes();

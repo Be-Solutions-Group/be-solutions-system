@@ -2,16 +2,20 @@
 
 namespace App\Models;
 
+use App\User;
+use App\Models\Position;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
  * @property integer $user_id
+ * @property string $username
  * @property int $position_id
  * @property int $branch_id
  * @property int $team_id
+ * @property int $is_leader
  * @property string $created_at
- * @property string $updated_id
+ * @property string $updated_at
  * @property Branch $branch
  * @property Position $position
  * @property Team $team
@@ -29,17 +33,20 @@ class Member extends Model
      */
     protected $table = 'member';
 
+
+    public $timestamps = true;
+
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'position_id', 'branch_id', 'team_id', 'created_at', 'updated_id'];
+    protected $fillable = ['user_id', 'position_id', 'branch_id', 'team_id', 'is_leader', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function branch()
     {
-        return $this->belongsTo('App\Models\Branch');
+        return $this->belongsTo('App\Models\Branch')->withDefault();
     }
 
     /**
@@ -47,7 +54,7 @@ class Member extends Model
      */
     public function position()
     {
-        return $this->belongsTo('App\Models\Position');
+        return $this->belongsTo('App\Models\Position')->withDefault();
     }
 
     /**
@@ -55,7 +62,7 @@ class Member extends Model
      */
     public function team()
     {
-        return $this->belongsTo('App\Models\Team');
+        return $this->belongsTo('App\Models\Team')->withDefault();
     }
 
     /**
@@ -63,7 +70,7 @@ class Member extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User')->withDefault();
     }
 
     /**

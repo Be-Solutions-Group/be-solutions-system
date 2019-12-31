@@ -32,7 +32,7 @@ class Client extends Model
      */
     public function file()
     {
-        return $this->belongsTo('App\Models\File', 'logo');
+        return $this->belongsTo('App\Models\File', 'logo')->withDefault();
     }
 
     /**
