@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $developer
  * @property string $design_start
  * @property string $design_finish
+ * @property string $design_approved
  * @property string $development_start
  * @property string $development_finish
  * @property string $notes
@@ -27,6 +28,8 @@ class ProjectTimeline extends Model
      */
     protected $table = 'project_timeline';
 
+    public $dates = ['design_start', 'design_finish', 'design_approved', 'development_start', 'development_finish'];
+
     /**
      * @var array
      */
@@ -37,18 +40,19 @@ class ProjectTimeline extends Model
      */
     public function project()
     {
-        return $this->belongsTo('App\Models\Project');
+        return $this->belongsTo('App\Models\Project')->withDefault();
     }
-
 
     public function designerMember()
     {
-        return $this->belongsTo('App\Models\Member', 'designer');
+        return $this->belongsTo('App\Models\Member', 'designer')->withDefault();
     }
 
     public function developerMember()
     {
-        return $this->belongsTo('App\Models\Member', 'developer');
+        return $this->belongsTo('App\Models\Member', 'developer')->withDefault();
     }
+
+
 
 }

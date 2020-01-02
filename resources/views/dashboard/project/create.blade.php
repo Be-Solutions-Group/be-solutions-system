@@ -41,7 +41,8 @@
 
     <section class="content">
         <div class="alert alert-circled alert-warning">
-            <strong>Note:</strong> Last Web Project Will Be Finished On 21 Jan 2019
+            <strong>Note:</strong> Last Project Design Will Be Finished <strong>{{$lastProjectDesign->design_finish ? $lastProjectDesign->design_finish->format('d M Y') : ''}}</strong>
+            <strong>Note:</strong> Last Project Development Will Be Finished <strong>{{$lastProjectDevelopment->development_finish ? $lastProjectDevelopment->development_finish->format('d M Y') : ''}}</strong>
         </div>
 
         @include('dashboard.layouts.messages')

@@ -62,7 +62,7 @@
                 </ul>
             </li>--}}
 
-            <li class="treeview">
+           {{-- <li class="treeview">
                 <a href="#">
                     <i class="fa fa-suitcase"></i>
                     <span>Sales Team</span>
@@ -72,7 +72,7 @@
                     <li><a href="{{adminUrl('gallery/create')}}"><i class="fa fa-upload"></i> Add New Member</a></li>
                     <li><a href="{{adminUrl('appointment')}}"><i class="fa fa-edit"></i> Show / Edit Appointment</a></li>
                 </ul>
-            </li>
+            </li>--}}
 
             <li class="treeview">
                 <a href="#">
@@ -86,7 +86,7 @@
                 </ul>
             </li>
 
-            <li class="treeview">
+            {{--<li class="treeview">
                 <a href="#">
                     <i class="fa fa-code"></i>
                     <span>Development Team</span>
@@ -96,7 +96,7 @@
                     <li><a href="{{adminUrl('gallery/create')}}"><i class="fa fa-upload"></i> Add New Member</a></li>
                     <li><a href="{{adminUrl('appointment')}}"><i class="fa fa-edit"></i> Show / Edit Appointment</a></li>
                 </ul>
-            </li>
+            </li>--}}
 
             <li class="treeview">
                 <a href="#">
@@ -122,7 +122,7 @@
                 </ul>
             </li>
 
-            <li class="treeview">
+            {{--<li class="treeview">
                 <a href="#">
                     <i class="fa fa-pie-chart"></i>
                     <span>Reports</span>
@@ -132,7 +132,7 @@
                     <li><a href="{{adminUrl('gallery/create')}}"><i class="fa fa-upload"></i> Add New Member</a></li>
                     <li><a href="{{adminUrl('gallery')}}"><i class="fa fa-edit"></i> Show / Edit Members</a></li>
                 </ul>
-            </li>
+            </li>--}}
 
             <li class="treeview">
                 <a href="#">

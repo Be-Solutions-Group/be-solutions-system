@@ -40,7 +40,7 @@ class Project extends Model
      */
     public function client()
     {
-        return $this->belongsTo('App\Models\Client');
+        return $this->belongsTo('App\Models\Client')->withDefault();
     }
 
     /**
@@ -48,7 +48,7 @@ class Project extends Model
      */
     public function content()
     {
-        return $this->belongsTo('App\Models\File', 'content_id');
+        return $this->belongsTo('App\Models\File', 'content_id')->withDefault();
     }
 
     /**
@@ -56,7 +56,7 @@ class Project extends Model
      */
     public function contract()
     {
-        return $this->belongsTo('App\Models\File', 'contract_id');
+        return $this->belongsTo('App\Models\File', 'contract_id')->withDefault();
     }
 
     /**
@@ -64,7 +64,7 @@ class Project extends Model
      */
     public function member()
     {
-        return $this->belongsTo('App\Models\Member', 'sales_man_id');
+        return $this->belongsTo('App\Models\Member', 'sales_man_id')->withDefault();
     }
 
     /**
@@ -72,15 +72,20 @@ class Project extends Model
      */
     public function status()
     {
-        return $this->belongsTo('App\Models\Status');
+        return $this->belongsTo('App\Models\Status')->withDefault();
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function projectTimelines()
+    public function projectTimeline()
     {
-        return $this->hasMany('App\Models\ProjectTimeline');
+        return $this->hasOne('App\Models\ProjectTimeline')->withDefault();
+    }
+
+    public function projectDeploymentInfo()
+    {
+        return $this->hasOne(DeploymentInfo::class, 'project_id')->withDefault();
     }
 
 }

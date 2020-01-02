@@ -61,39 +61,47 @@
                                 <tbody>
                                 <tr>
                                     <td>Project Name</td>
-                                    <td>Hatly</td>
+                                    <td>{{$project->name}}</td>
                                 </tr>
                                 <tr>
                                     <td>Project Description</td>
-                                    <td> Hatly Hatly Hatly v Hatly= Hatly Hatly  Hatly  Hatly  Hatly Hatly Hatly Hatly Hatly Hatly Hatly Hatly Hatly Hatly Hatly Hatly  Hatly Hatly </td>
+                                    <td> {{$project->description}}</td>
                                 </tr>
                                 <tr>
                                     <td>Domain</td>
-                                    <td><a href="https://www.3elajy.com">https://www.3elajy.com</a></td>
+                                    <td><a href="{{$project->projectDeploymentInfo->domain}}">{{$project->projectDeploymentInfo->domain}}</a></td>
                                 </tr>
                                 <tr>
                                     <td>Sales Man</td>
-                                    <td>Mohammed Hassan</td>
+                                    <td>{{$project->member->username}}</td>
                                 </tr>
                                 <tr>
                                     <td>Sales Man Team Leader</td>
-                                    <td>Ahmed Sha3ban</td>
+                                    <td>{{$project->member->team->member->username}}</td>
                                 </tr>
                                 <tr>
                                     <td>Client</td>
-                                    <td>Ahmed Mansur</td>
+                                    <td>{{$project->client->name}}</td>
                                 </tr>
                                 <tr>
                                     <td>Type</td>
-                                    <td>Mobile Application</td>
+                                    <td>{{$project->project_type}}</td>
                                 </tr>
                                 <tr>
                                     <td>Contract Image</td>
-                                    <td><a download="" href="#"><i class="fa fa-download"></i> Download Image</a></td>
+                                    <td><a download="" href="{{$project->contract->path}}"><i class="fa fa-download"></i> Download Image</a></td>
                                 </tr>
                                 <tr>
                                     <td>Content Zip File</td>
-                                    <td><a download="" href="#"><i class="fa fa-download"></i> Download</a></td>
+                                    <td><a download="" href="{{$project->content->path}}"><i class="fa fa-download"></i> Download</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Created At</td>
+                                    <td>{{$project->created_at->diffForHumans()}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Last Update</td>
+                                    <td>{{$project->projectTimeline->updated_at->diffForHumans()}}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -120,35 +128,107 @@
                                 <tbody>
                                 <tr>
                                     <td>Design Started </td>
-                                    <td>25 Dec 2019</td>
+                                    <td>{{$project->projectTimeline->design_start ? $project->projectTimeline->design_start->format('d M Y') : ''}}</td>
                                 </tr>
                                 <tr>
                                     <td>Design Finish </td>
-                                    <td>28 Dec 2019</td>
+                                    <td>{{$project->projectTimeline->design_finish ? $project->projectTimeline->design_finish->format('d M Y') : ''}}</td>
                                 </tr>
                                 <tr>
                                     <td>Design Approved</td>
-                                    <td> 30 Dec 2019 </td>
+                                    <td> {{$project->projectTimeline->design_approved ? $project->projectTimeline->design_approved->format('d M Y') : ''}} </td>
                                 </tr>
                                 <tr>
                                     <td>Development Start</td>
-                                    <td>1 Jan 2020</td>
+                                    <td>{{$project->projectTimeline->development_start ? $project->projectTimeline->development_start->format('d M Y') : ''}}</td>
                                 </tr>
                                 <tr>
                                     <td>Development End</td>
-                                    <td>3 Jan 2020</td>
+                                    <td>{{$project->projectTimeline->development_finish ? $project->projectTimeline->development_finish->format('d M Y') : ''}}</td>
                                 </tr>
                                 <tr>
                                     <td>Designer</td>
-                                    <td>Ahmed Sha3ban</td>
+                                    <td>{{$project->projectTimeline->designerMember->username}}</td>
                                 </tr>
                                 <tr>
                                     <td>Developer</td>
-                                    <td>Ahmed Mansur</td>
+                                    <td>{{$project->projectTimeline->developerMember->username}}</td>
                                 </tr>
                                 <tr>
                                     <td>Status</td>
-                                    <td>In Progress</td>
+                                    <td>{{$project->status->title}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Notes</td>
+                                    <td>{{$project->projectTimeline->notes}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tested</td>
+                                    <td><i class="fa {{$project->projectTimeline->tested == 1 ? 'fa-check text-success' : 'fa-close text-danger'}}" style="font-size: 25px"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Deployed (Uploaded On Server)</td>
+                                    <td><i class="fa {{$project->projectTimeline->deployed == 1 ? 'fa-check text-success' : 'fa-close text-danger'}}" style="font-size: 25px"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Data Filled</td>
+                                    <td><i class="fa {{$project->projectTimeline->data_filled == 1 ? 'fa-check text-success' : 'fa-close text-danger'}}" style="font-size: 25px"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Approved</td>
+                                    <td><i class="fa {{$project->projectTimeline->approved == 1 ? 'fa-check text-success' : 'fa-close text-danger'}}" style="font-size: 25px"></i></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- end todaty calls table -->
+                    </div>
+                </div>
+
+                <div class="col-lg-12" style="margin-top: 20px">
+                    <div class="tables-section">
+                        <!-- start todaty calls table -->
+                        <div class="today-calls-table table-section">
+                            <div class="section-heading">
+                                <p>
+                                    Deployment Info
+                                </p>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Attribute </th>
+                                    <th scope="col">Details</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Domain </td>
+                                    <td>{{$project->projectDeploymentInfo->domain}}</td>
+                                </tr>
+                                <tr>
+                                    <td>cPanel Url </td>
+                                    <td>{{$project->projectDeploymentInfo->cpanel_url}}</td>
+                                </tr>
+                                <tr>
+                                    <td>cPanel Username </td>
+                                    <td>{{$project->projectDeploymentInfo->cpanel_username}}</td>
+                                </tr>
+                                <tr>
+                                    <td>cPanel Password</td>
+                                    <td>{{$project->projectDeploymentInfo->cpanel_password}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Dashboard Url</td>
+                                    <td>{{$project->projectDeploymentInfo->dashboard_url}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Dashboard Username</td>
+                                    <td>{{$project->projectDeploymentInfo->dashboard_username}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Dashboard Password</td>
+                                    <td>{{$project->projectDeploymentInfo->dashboard_password}}</td>
                                 </tr>
                                 </tbody>
                             </table>

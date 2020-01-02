@@ -9,8 +9,10 @@ Route::group(['middleware' => 'auth' ,'namespace' => 'Dashboard'], function () {
     Route::resource('/be-group-system/project', 'ProjectController');
     Route::get('/be-group-system/my-projects', 'ProjectController@myProjects');
 
-    /* -- Return Member Pages -- */
+    /* -- Return Project Timeline Pages -- */
     Route::resource('/be-group-system/project-timeline', 'ProjectTimeLineController');
+    Route::get('/be-group-system/developer-edit/{id}', 'ProjectTimeLineController@developerEdit');
+    Route::get('/be-group-system/designer-edit/{id}', 'ProjectTimeLineController@designerEdit');
 
     /* -- Return Member Pages -- */
     Route::resource('/be-group-system/member', 'MemberController');

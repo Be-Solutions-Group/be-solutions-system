@@ -34,7 +34,7 @@ class Team extends Model
      */
     public function member()
     {
-        return $this->belongsTo('App\Models\Member', 'leader_id');
+        return $this->belongsTo('App\Models\Member', 'leader_id')->withDefault();
     }
 
     /**

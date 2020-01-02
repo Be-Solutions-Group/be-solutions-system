@@ -88,12 +88,11 @@
                                     <td>{{$project->created_at ? $project->created_at->diffForHumans() : ''}}</td>
                                     <td>{{$project->updated_at ? $project->updated_at->diffForHumans() : ''}}</td>
                                     <td>
-                                        <a href="{{route('project.edit', $project->id)}}" class style="font-size: 20px"><i class="fa fa-pencil-square-o"></i> </a>
-                                        <a href="{{route('project.show', $project->id)}}" class style="font-size: 20px"><i class="fa fa-eye"></i> </a>
-
-                                        <button type="button" class data-toggle="modal" data-target="#delete{{$project->id}}" style="font-size: 20px">
+                                        <a href="{{adminUrl('/project-timeline/' . $project->id . '/edit/')}}" class style="font-size: 20px"><i class="fa fa-pencil-square-o"></i> </a>
+                                        {{--<a href="{{route('project.show', $project->id)}}" class style="font-size: 20px"><i class="fa fa-eye"></i> </a>--}}
+                                        {{--<button type="button" class data-toggle="modal" data-target="#delete{{$project->id}}" style="font-size: 20px">
                                             <i class="fa fa-trash"></i>
-                                        </button>
+                                        </button>--}}
                                     </td>
                                 </tr>
                             @endforeach

@@ -31,38 +31,59 @@ class ProjectController extends Controller
     {
         $authUser = Auth::user();
         $member = Member::where('user_id', '=', $authUser->id)->first();
+        //Return Projects to developer
         if ($member->position_id == 9)
         {
+            //array of finished designs will appear to developer
             $finishedDesigns = [];
             $projectsTimelines = ProjectTimeline::where('design_approved', '!=', null)->get();
             foreach ($projectsTimelines as $projectsTimeline)
             {
                 array_push($finishedDesigns, $projectsTimeline->project_id);
             }
+
+            //Remove Deployed Websites From List
+            $deployedWebs = [];
+            $deployedWebsites = ProjectTimeline::where('deployed', '=', 1)->get();
+            foreach ($deployedWebsites as $deployedWebsite)
+            {
+                array_push($deployedWebs, $deployedWebsite->project_id);
+            }
+
             $projects = Project::where('project_type', '=', 'Web')
                 ->whereIn('id', $finishedDesigns)
+                ->whereNotIn('id', $deployedWebs)
                 ->get();
-            return view('dashboard.project.index', compact('projects'));
+
+            return view('dashboard.projectTimeline.index', compact('projects'));
         }
 
+        //Return Projects to android developer
         if ($member->position_id == 5)
         {
             $projects = Project::where('project_type', '=', 'Mobile & Web')->get();
-            return view('dashboard.project.index', compact('projects'));
+            return view('dashboard.projectTimeline.index', compact('projects'));
         }
 
+        //Return Projects to front end
         if ($member->position_id == 6)
         {
             $finishedDesigns = [];
-            $projectsTimelines = ProjectTimeline::where('design_approved', '=', null)->get();
+            $projectsTimelines = ProjectTimeline::where('approved', '=', null)->get();
             foreach ($projectsTimelines as $projectsTimeline)
             {
                 array_push($finishedDesigns, $projectsTimeline->project_id);
             }
+            //Add Deployed Websites To
+            $deployedItems = ProjectTimeline::where('deployed', '=', 1)->get();
+            foreach ($deployedItems as $deployedItem)
+            {
+                array_push($finishedDesigns, $deployedItem->project_id);
+            }
             $projects = Project::where('project_type', '=', 'Web')
                 ->whereIn('id', $finishedDesigns)
                 ->get();
-            return view('dashboard.project.index', compact('projects'));
+            return view('dashboard.projectTimeline.index', compact('projects'));
         }
 
     }
@@ -84,7 +105,9 @@ class ProjectController extends Controller
         }
         $members = Member::with('position')->whereIn('position_id', $arrayOfSalesPositions)->get();
         $status = Status::all();
-        return view('dashboard.project.create', compact('salesTeams', 'members', 'status'));
+        $lastProjectDesign = ProjectTimeline::with('designerMember')->orderBy('design_finish', 'desc')->first();
+        $lastProjectDevelopment = ProjectTimeline::with('developerMember')->orderBy('development_finish', 'desc')->first();
+        return view('dashboard.project.create', compact('salesTeams', 'members', 'status', 'lastProjectDesign', 'lastProjectDevelopment'));
     }
 
     /**
@@ -151,7 +174,8 @@ class ProjectController extends Controller
         }
         $project->save();
 
-        $project->projectTimelines()->create(['project_id', $project->id]);
+        $project->projectTimeline()->create(['project_id', $project->id]);
+        $project->projectDeploymentInfo()->create(['project_id', $project->id, 'domain' => \request('domain')]);
 
         return redirect(adminUrl('/project'))->with('create', 'Project Has Been Created Successfully and Sent To Team');
 
@@ -165,7 +189,8 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        return view('dashboard.project.show');
+        $project = Project::with('projectTimeline')->find($id);
+        return view('dashboard.project.show', compact('project'));
     }
 
     /**

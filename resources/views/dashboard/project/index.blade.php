@@ -81,9 +81,9 @@
                                 <tr>
                                     <td>{{$project->id}}</td>
                                     <td>{{$project->name}}</td>
-                                    <td>{{$project->member->username}} ({{$project->member->team->name}})</td>
                                     <td>{{$project->client->name}}</td>
-                                    <td>{{$project->status->title}}</td>
+                                    <td>{{$project->member->username}} ({{$project->member->team->name}})</td>
+                                    <td><span class="{{$project->status_id == 14 ? 'text-success' : ''}}">{{$project->status->title}}</span></td>
                                     <td>{{$project->project_type}}</td>
                                     <td>{{$project->created_at ? $project->created_at->diffForHumans() : ''}}</td>
                                     <td>{{$project->updated_at ? $project->updated_at->diffForHumans() : ''}}</td>
