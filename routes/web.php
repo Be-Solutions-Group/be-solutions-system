@@ -16,4 +16,13 @@ Route::get('/', function () {
 });
 
 
+Route::get('current-projects', 'WebsitePagesController@currentProjects');
+Route::get('add-new-project', 'WebsitePagesController@addNewProject');
+Route::post('store-project', 'WebsitePagesController@storeProject');
+Route::get('current-updates', 'WebsitePagesController@currentUpdates');
+Route::get('add-new-update', 'WebsitePagesController@addNewUpdate');
+Route::post('store-update', 'WebsitePagesController@storeUpdate');
+
+
+
 

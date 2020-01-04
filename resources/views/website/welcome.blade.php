@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.layouts')
+@extends('website.layouts.layouts')
 @section('title', 'Dashboard')
 <!-- Drop Your Customized Style Here -->
 @section('customizedStyle')
