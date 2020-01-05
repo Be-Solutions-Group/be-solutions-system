@@ -174,6 +174,7 @@ class ProjectController extends Controller
 
         $project = new Project();
         $project->name = \request('name');
+        $project->description = \request('description');
         $project->domain = \request('domain');
         $project->client_id = $client->id;
         $project->sales_man_id = \request('sales_man');
@@ -242,7 +243,7 @@ class ProjectController extends Controller
         $project = Project::find($id);
         $request->validate([
             'name'              => 'bail|required|max:200',
-            'description'       => 'bail|nullable|text',
+            'description'       => 'bail|nullable',
             'team_id'           => 'bail|required|int',
             'sales_man'         => 'bail|required|int',
             'status'            => 'bail|required|int',
@@ -268,6 +269,7 @@ class ProjectController extends Controller
         }
 
         $project->name = \request('name');
+        $project->description = \request('description');
         $project->domain = \request('domain');
         $project->sales_man_id = \request('sales_man');
         $project->status_id = \request('status');

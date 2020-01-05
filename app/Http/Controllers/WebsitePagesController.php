@@ -9,28 +9,37 @@ class WebsitePagesController extends Controller
 {
     public function currentProjects()
     {
-        $type = $_GET['type'];
-        if ($type == 'all')
+        if ($type = $_GET['type'])
+        {
+            if ($type == 'all')
+            {
+                $projects = Project::with('projectTimeline')->orderBy('created_at', 'desc')->get();
+                return view('website.projects', compact('projects'));
+            }
+
+            elseif ($type == 'in-progress')
+            {
+                $projects = Project::with('projectTimeline')
+                    ->where('status_id', '!=', 1)
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+                return view('website.projects', compact('projects'));
+            }
+
+            elseif ($type == 'completed')
+            {
+                $projects = Project::with('projectTimeline')
+                    ->where('status_id', '=', 12)
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+                return view('website.projects', compact('projects'));
+            }
+        }
+
+
+        else
         {
             $projects = Project::with('projectTimeline')->orderBy('created_at', 'desc')->get();
-            return view('website.projects', compact('projects'));
-        }
-
-        elseif ($type == 'in-progress')
-        {
-            $projects = Project::with('projectTimeline')
-                ->where('status_id', '!=', 1)
-                ->orderBy('created_at', 'desc')
-                ->get();
-            return view('website.projects', compact('projects'));
-        }
-
-        elseif ($type == 'completed')
-        {
-            $projects = Project::with('projectTimeline')
-                ->where('status_id', '=', 12)
-                ->orderBy('created_at', 'desc')
-                ->get();
             return view('website.projects', compact('projects'));
         }
 
