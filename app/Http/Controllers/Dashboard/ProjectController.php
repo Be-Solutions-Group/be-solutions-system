@@ -68,21 +68,36 @@ class ProjectController extends Controller
         //Return Projects to front end
         if ($member->position_id == 6)
         {
-            $finishedDesigns = [];
-            $projectsTimelines = ProjectTimeline::where('approved', '=', null)->get();
+            $listOfProjects = [];
+
+            //Add Not Approved Items To List
+            $projectsTimelines = ProjectTimeline::where('approved', '=', null)->where('data_filled', '=', null)->get();
             foreach ($projectsTimelines as $projectsTimeline)
             {
-                array_push($finishedDesigns, $projectsTimeline->project_id);
+                array_push($listOfProjects, $projectsTimeline->project_id);
             }
-            //Add Deployed Websites To
+
+            //Add Deployed Websites To List
             $deployedItems = ProjectTimeline::where('deployed', '=', 1)->get();
             foreach ($deployedItems as $deployedItem)
             {
-                array_push($finishedDesigns, $deployedItem->project_id);
+                array_push($listOfProjects, $deployedItem->project_id);
             }
-            $projects = Project::where('project_type', '=', 'Web')
-                ->whereIn('id', $finishedDesigns)
+
+            //Add Not Filled Data To List
+            $arrayOfFilledDataItems = [];
+            $filledWithDataItems = ProjectTimeline::where('data_filled', '=', 1)->get();
+            foreach ($filledWithDataItems as $filledWithDataItem)
+            {
+                array_push($arrayOfFilledDataItems, $filledWithDataItem->project_id);
+            }
+
+            $projects = Project::with('projectTimeline')
+                ->where('project_type', '=', 'Web')
+                ->whereIn('id', $listOfProjects)
+                ->whereNotIn('id', $arrayOfFilledDataItems)
                 ->get();
+
             return view('dashboard.projectTimeline.index', compact('projects'));
         }
 

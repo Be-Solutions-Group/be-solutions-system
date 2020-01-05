@@ -30,8 +30,10 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{url('add-new-project')}}"><i class="fa fa-plus"></i> Add New Project</a></li>
-                    <li><a href="{{url('current-projects')}}"><i class="fa fa-eye"></i> Show Projects Progress</a></li>
+                    {{--<li><a href="{{url('add-new-project')}}"><i class="fa fa-plus"></i> Add New Project</a></li>--}}
+                    <li><a href="{{url('current-projects?type=all')}}"><i class="fa fa-list"></i> Show All Projects </a></li>
+                    <li><a href="{{url('current-projects?type=in-progress')}}"><i class="fa fa-step-forward"></i> Show In Progress Projects </a></li>
+                    <li><a href="{{url('current-projects?type=completed')}}"><i class="fa fa-check"></i> Show Completed Projects </a></li>
                     {{--<li><a href="{{adminUrl('service?type=sub')}}"><i class="fa fa-edit"></i> Show / Edit Sub Service</a></li>--}}
                 </ul>
             </li>
@@ -43,7 +45,7 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{url('add-new-update')}}"><i class="fa fa-plus"></i> Add New Update</a></li>
+                    {{--<li><a href="{{url('add-new-update')}}"><i class="fa fa-plus"></i> Add New Update</a></li>--}}
                     <li><a href="{{url('current-updates')}}"><i class="fa fa-eye"></i> Show Updates Progress</a></li>
                     {{--<li><a href="{{adminUrl('service?type=sub')}}"><i class="fa fa-edit"></i> Show / Edit Sub Service</a></li>--}}
                 </ul>

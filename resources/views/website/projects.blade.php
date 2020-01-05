@@ -43,7 +43,7 @@
                 <div class="box box-primary" style="padding: 15px">
                     <div class="box-header with-border">
                         <h3 class="box-title">All Projects Info</h3>
-                        <a href="{{url('add-new-project')}}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add New Project </a>
+                        {{--<a href="{{url('add-new-project')}}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add New Project </a>--}}
                     </div>
                 @include('dashboard.layouts.messages')
                 <!-- /.box-header -->
@@ -57,7 +57,7 @@
                             <th>Sales Man</th>
                             <th>Type</th>
                             <th>Created at</th>
-                            <th>Will Finish in</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -68,32 +68,25 @@
                             <th>Sales Man</th>
                             <th>Type</th>
                             <th>Created at</th>
-                            <th>Will Finish in</th>
+                            <th>Action</th>
                         </tr>
                         </tfoot>
                         <tbody>
-                        {{--@if($projects)
+                        @if($projects)
                             @foreach($projects as $project)
                                 <tr>
                                     <td>{{$project->id}}</td>
                                     <td>{{$project->name}}</td>
                                     <td>{{$project->client->name}}</td>
-                                    <td>{{$project->member->username}} ({{$project->member->team->name}})</td>
-                                    <td><span class="{{$project->status_id == 14 ? 'text-success' : ''}}">{{$project->status->title}}</span></td>
+                                    <td>{{$project->member->username}} ({{$project->member->team->member->username}})</td>
                                     <td>{{$project->project_type}}</td>
                                     <td>{{$project->created_at ? $project->created_at->diffForHumans() : ''}}</td>
-                                    <td>{{$project->updated_at ? $project->updated_at->diffForHumans() : ''}}</td>
                                     <td>
-                                        <a href="{{route('project.edit', $project->id)}}" class style="font-size: 20px"><i class="fa fa-pencil-square-o"></i> </a>
-                                        <a href="{{route('project.show', $project->id)}}" class style="font-size: 20px"><i class="fa fa-eye"></i> </a>
-
-                                        <button type="button" class data-toggle="modal" data-target="#delete{{$project->id}}" style="font-size: 20px">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
+                                        <a href="{{url('show-project/' . $project->id)}}" class style="font-size: 20px"><i class="fa fa-eye"></i> </a>
                                     </td>
                                 </tr>
                             @endforeach
-                        @endif--}}
+                        @endif
                         </tbody>
                     </table>
 

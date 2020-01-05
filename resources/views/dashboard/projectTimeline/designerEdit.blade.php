@@ -81,7 +81,7 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label>Design Approved:</label>
-                                        <input type="date" class="form-control pull-right" name="design_approved">
+                                        <input type="date" class="form-control pull-right" name="design_approved" value="{{$project->projectTimeline->design_approved ? $project->projectTimeline->design_approved->format('Y-m-d') : ''}}">
                                         <!-- /.input group -->
                                     </div>
                                     <p class="help-block">Design Approved In: </p>
