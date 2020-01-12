@@ -133,6 +133,12 @@
                                 </div>
 
                                 <div class="col-lg-4">
+                                    <label for="exampleInputEmail1"> Contract Date</label>
+                                    <input type="date" class="form-control" name="contract_date" id="exampleInputEmail1" placeholder="Enter Contract Date" value="{{$project->contract_date ? $project->contract_date->format('Y-m-d') : ''}}">
+                                    <p class="help-block"> Enter Contract Date </p>
+                                </div>
+
+                                <div class="col-lg-4">
                                     <label for="exampleInputEmail1"> Content of Website</label>
                                     <input type="file" class="form-control" name="content" id="exampleInputEmail1" placeholder="Enter Service text">
                                     <p class="help-block"> Upload <strong>Zip File</strong> with all content and images of website</p>

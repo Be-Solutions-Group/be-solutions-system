@@ -91,14 +91,10 @@
                                     <td>Type</td>
                                     <td>{{$project->project_type}}</td>
                                 </tr>
-                                {{--<tr>
-                                    <td>Contract Image</td>
-                                    <td><a download="" href="{{$project->contract->path}}"><i class="fa fa-download"></i> Download Image</a></td>
-                                </tr>
                                 <tr>
-                                    <td>Content Zip File</td>
-                                    <td><a download="" href="{{$project->content->path}}"><i class="fa fa-download"></i> Download</a></td>
-                                </tr>--}}
+                                    <td>Is Content Existed</td>
+                                    <td><i class="fa {{$project->content_id ? 'fa-check text-success' : 'fa-close text-danger'}}" style="font-size: 25px"></i> </td>
+                                </tr>
                                 <tr>
                                     <td>Created At</td>
                                     <td>{{$project->created_at->diffForHumans()}}</td>

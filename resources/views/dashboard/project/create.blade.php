@@ -118,8 +118,6 @@
                                 <p class="help-block">Select Project Priority</p>
                             </div>--}}
 
-
-
                             <div class="col-lg-4">
                                 <label for="exampleInputEmail1">Domain</label>
                                 <input type="url" class="form-control" name="domain" id="exampleInputEmail1" placeholder="Enter Client" value="{{old('domain')}}">
@@ -136,6 +134,12 @@
                                 <label for="exampleInputEmail1"> Contract Image</label>
                                 <input type="file" class="form-control" name="contract" id="exampleInputEmail1" placeholder="Enter Service text">
                                 <p class="help-block"> Upload Contract of Project </p>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label for="exampleInputEmail1"> Contract Date</label>
+                                <input type="date" class="form-control" name="contract_date" id="exampleInputEmail1" placeholder="Enter Contract Date">
+                                <p class="help-block"> Enter Contract Date </p>
                             </div>
 
                             <div class="col-lg-4">

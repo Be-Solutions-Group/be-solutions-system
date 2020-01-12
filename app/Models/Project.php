@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $client_id
  * @property int $contract_id
+ * @property int $contract_date
  * @property int $content_id
  * @property int $sales_man_id
  * @property int $status_id
@@ -33,8 +34,9 @@ class Project extends Model
     /**
      * @var array
      */
-    protected $fillable = ['client_id', 'contract_id', 'content_id', 'sales_man_id', 'status_id', 'name', 'description', 'domain', 'created_at', 'updated_at'];
+    protected $fillable = ['client_id', 'contract_id', 'contract_date', 'content_id', 'sales_man_id', 'status_id', 'name', 'description', 'domain', 'created_at', 'updated_at'];
 
+    public $dates = ['contract_date'];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

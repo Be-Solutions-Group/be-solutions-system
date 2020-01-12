@@ -143,7 +143,7 @@ class ProjectController extends Controller
             'status'            => 'bail|required|int',
             'domain'            => 'bail|nullable|url',
             'image_id'          => 'bail|nullable|mimes:jpeg,jpg,png,gif,mp4',
-            'contract'          => 'bail|required|mimes:jpeg,jpg,png,gif,mp4,pdf,doc,docx',
+            'contract'          => 'bail|nullable|mimes:jpeg,jpg,png,gif,mp4,pdf,doc,docx',
             'content'           => 'bail|nullable|mimes:jpeg,jpg,png,gif,mp4,zip,rar,doc,docx',
         ], [], [
             'name'              => 'Name',
@@ -180,6 +180,7 @@ class ProjectController extends Controller
         $project->sales_man_id = \request('sales_man');
         $project->status_id = \request('status');
         $project->project_type = \request('project_type');
+        $project->contract_date = \request('contract_date');
         $project->contract_id = $uploadedContractId;
         //Save Content
         if (isset($request->image_id))
@@ -248,6 +249,7 @@ class ProjectController extends Controller
             'sales_man'         => 'bail|required|int',
             'status'            => 'bail|required|int',
             'domain'            => 'bail|nullable|url',
+            'contract_date'     => 'bail|required',
             'contract'          => 'bail|mimes:jpeg,jpg,png,gif,mp4,pdf,doc,docx',
             'content'           => 'bail|nullable|mimes:jpeg,jpg,png,gif,mp4,zip,rar,doc,docx',
         ], [], [
@@ -274,6 +276,7 @@ class ProjectController extends Controller
         $project->sales_man_id = \request('sales_man');
         $project->status_id = \request('status');
         $project->project_type = \request('project_type');
+        $project->contract_date = \request('contract_date');
 
         //Save Content
         if (isset($input['content']))

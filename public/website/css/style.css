@@ -1,0 +1,145 @@
+body {
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.dot-color {
+    width: 50%;
+
+}
+
+.dot-color ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.dot-color ul li {
+    margin: 0 0;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    color: #fff;
+    position: relative;
+
+}
+
+.dot-color ul li p {
+    color: #fff;
+    position: absolute;
+    left: 25px;
+}
+
+.dot-color ul li span {
+    width: 20px;
+    height: 20px;
+    background: red;
+    display: -webkit-inline-box;
+    border-radius: 50%;
+    padding: 10px 0;
+    position: absolute;
+    top: 3px;
+    left: 0;
+}
+
+.dot-color ul .re span {
+    background: #e40016;
+}
+
+.dot-color ul .gr span {
+    background: #04c704;
+}
+
+.dot-color ul .or span {
+    background: orange;
+}
+
+.tproject {
+    margin: 20px 0;
+}
+
+.tproject thead {
+    background: #2b3e50 !important;
+    border: 1px solid #2b3e50 !important;
+    color: #ffffff !important;
+}
+
+tr,
+th {
+    transition: all .2s ease-in-out;
+}
+
+tr:hover,
+th:hover {
+    background: #2b3e50;
+    color: #fff;
+}
+
+.table-bordered thead th,
+.table-bordered thead td {
+    border-bottom-width: 2px !important;
+    font-weight: 100 !important;
+    text-align: center !important;
+    color: orange  !important;
+}
+
+.top-head {
+    background: #2b3e50;
+    width: 100%;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    background: #0F2027;
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    background: linear-gradient(to right, #202f3d, #4a6885, #202f3d);
+}
+
+.center-logo {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}
+
+.center-logo img {
+    width: 100%;
+    text-align: center;
+}
+
+.nots {
+    height: 50px;
+    background: #2b3e50;
+    margin: 0px 0;
+    border-radius: 0;
+    border-top: 2px solid #e97128;
+    padding: 10px 0;
+}
+
+.copy{
+    background: #2b3e50;
+    width: 100%;
+    text-align: center;
+    color: orange;
+    height: 50px;
+    line-height: 50px;
+}
+
+
+.completed
+{
+    background-color: #40a747 !important;
+    color: white;
+}
+
+.data-not-completed
+{
+    background-color: #b50c25 !important;
+    color: white;
+}
+
+.waiting
+{
+    background-color: #ec7a08 !important;
+    color: white;
+}

@@ -11,12 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 Route::get('current-projects', 'WebsitePagesController@currentProjects');
+Route::get('/', 'WebsitePagesController@lastAddedProjects');
 Route::get('add-new-project', 'WebsitePagesController@addNewProject');
 Route::get('show-project/{id}', 'WebsitePagesController@showProject');
 Route::post('store-project', 'WebsitePagesController@storeProject');

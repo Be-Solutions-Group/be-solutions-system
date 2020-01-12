@@ -5,10 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
+
 class WebsitePagesController extends Controller
 {
+    public function lastAddedProjects()
+    {
+        $projects = Project::with('projectTimeline')->orderBy('created_at', 'desc')->limit(10)->get();
+        return view('website.welcome', compact('projects'));
+    }
+
+
     public function currentProjects()
     {
+        //return url()->current();
         if ($type = $_GET['type'])
         {
             if ($type == 'all')

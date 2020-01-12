@@ -1,9 +1,143 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Projects List</title>
+    <!-- =================font icon================= -->
+    <link rel="stylesheet" href="{{assetPath('website/css/all.css')}}">
+    <!-- =================font icon================= -->
+
+    <!-- =================animate================= -->
+    <!-- =================animate================= -->
+
+    <!-- =================font icon================= -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <!-- =================font icon================= -->
+
+    <!-- =================bootstrap================= -->
+    <!-- <link rel="stylesheet" href="./css/bootstrap-rtl.css"> -->
+    <link rel="stylesheet" href="{{assetPath('website/css/bootstrap.css')}}">
+    <!-- =================bootstrap================= -->
+
+    <!-- =================file css================= -->
+    <link rel="stylesheet" href="{{assetPath('website/css/style.css')}}">
+    <!-- =================file css================= -->
+
+    <link rel="shortcut icon" href="{{asset('website/images/be.png')}}" type="image/png" sizes="16x16 32x32">
+</head>
+
+<body>
+<!-- =========== start navbar =========== -->
+<div class="top-head">
+    <div class="container-fluid">
+        <div class="center-logo">
+            <img src="{{assetPath('website/images/be.png')}}" alt="">
+        </div>
+    </div>
+</div>
+
+<div class="nots">
+    <div class="container-fluid">
+        <div class="dot-color">
+            <ul>
+                <li class="re"><span></span>  <p>data not completed</p></li>
+                <li class="or"><span></span>  <p>Waiting for programming</p></li>
+                <li class="gr"><span></span>  <p>Finish</p></li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="tproject">
+    <div class="container-fluid">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">Sales Man</th>
+                <th scope="col">Data  </th>
+                <th scope="col">Status</th>
+                <th scope="col">Contract Date</th>
+                <th scope="col">Design Started</th>
+                <th scope="col">Design Finish</th>
+                <th scope="col">Development Start</th>
+                <th scope="col">Development end</th>
+                <th scope="col">Deployed</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @if($projects)
+                @foreach($projects as $project)
+                    <tr
+                        @if($project->status_id == 12)
+                            style="background-color: #04c703 ; color: white;"
+                            @elseif($project->status_id == 13)
+                            style="background-color: #ec7a08 ; color: white;"
+                            @elseif($project->status_id == 14)
+                            style="background-color: #b50c25 ; color: white;"
+                        @endif
+                    >
+                        <th scope="row">{{$project->id}} </th>
+                        <td>{{$project->name}}</td>
+                        <td>{{$project->member->username}} ({{$project->member->team->member->username}})</td>
+                        <td><i class="fas {{!empty($project->content_id) ? 'fa-check text-success' : 'fa-times text-danger'}}" style="font-size: 25px"></i></td>
+                        <td>{{$project->status->title}}</td>
+                        <td>{{$project->contract_date ? $project->contract_date->format('d M Y') : ''}}</td>
+                        <td>{{$project->projectTimeline->design_start ? $project->projectTimeline->design_start->format('d M Y') : ''}}</td>
+                        <td>{{$project->projectTimeline->design_finish ? $project->projectTimeline->design_finish->format('d M Y') : ''}}</td>
+                        <td>{{$project->projectTimeline->development_start ? $project->projectTimeline->development_start->format('d M Y') : ''}}</td>
+                        <td>{{$project->projectTimeline->development_finish ? $project->projectTimeline->development_finish->format('d M Y') : ''}}</td>
+                        <td><i class="fas {{$project->deployed ? 'fa-check text-success' : 'fa-times text-danger'}}" style="font-size: 25px"></i></td>
+                    </tr>
+                @endforeach
+            @endif
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- =====start copy===== -->
+<div class="copy">
+    Copyright 2020 Be Group
+</div>
+<!-- =====end copy===== -->
+
+<script src="{{assetPath('website/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{assetPath('website/js/popper.js')}}"></script>
+<script src="{{assetPath('website/js/bootstrap.min.js')}}"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{--
 @extends('website.layouts.layouts')
 @section('title', 'Dashboard')
 <!-- Drop Your Customized Style Here -->
 @section('customizedStyle')
     <link rel="stylesheet" href="{{assetPath('dashboard/plugins/fullcalendar/main.min.css')}}">
-    {{--<link rel="stylesheet" href="{{assetPath('dashboard/plugins/fullcalendar-interaction/main.min.css')}}">--}}
+    --}}
+{{--<link rel="stylesheet" href="{{assetPath('dashboard/plugins/fullcalendar-interaction/main.min.css')}}">--}}{{--
+
     <link rel="stylesheet" href="{{assetPath('dashboard/plugins/fullcalendar-daygrid/main.min.css')}}">
     <link rel="stylesheet" href="{{assetPath('dashboard/plugins/fullcalendar-timegrid/main.min.css')}}">
     <link rel="stylesheet" href="{{assetPath('dashboard/plugins/fullcalendar-bootstrap/main.min.css')}}">
@@ -14,11 +148,14 @@
     <script src="{{assetPath('dashboard/plugins/fullcalendar/main.min.js')}}"></script>
     <script src="{{assetPath('dashboard/plugins/fullcalendar-daygrid/main.min.js')}}"></script>
     <script src="{{assetPath('dashboard/plugins/fullcalendar-timegrid/main.min.js')}}"></script>
-    {{--<script src="{{assetPath('dashboard/plugins/fullcalendar-interaction/main.min.js')}}"></script>--}}
+    --}}
+{{--<script src="{{assetPath('dashboard/plugins/fullcalendar-interaction/main.min.js')}}"></script>--}}{{--
+
     <script src="{{assetPath('dashboard/plugins/fullcalendar-bootstrap/main.min.js')}}"></script>
 
 
-    {{--<script>
+    --}}
+{{--<script>
 
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
@@ -52,7 +189,8 @@
             });
         });
 
-    </script>--}}
+    </script>--}}{{--
+
 @endsection
 <!-- Start of content section -->
 @section('content')
@@ -195,7 +333,8 @@
             </div>
 
 
-            {{--<!-- start shortcuts section -->
+            --}}
+{{--<!-- start shortcuts section -->
             <div class="shortcuts-section">
                 <div class="section-heading">
                     <i class="ion-shuffle"></i>
@@ -229,7 +368,9 @@
                                 </div>
                             </a>
                         </li>
-                        --}}{{--<li>
+                        --}}{{--
+--}}
+{{--<li>
                             <a href="{{adminUrl('video/create')}}">
                                 <div class="li-img">
                                     <img src="{{asset('dashboard/img/welcome/video.png')}}" alt="img">
@@ -241,6 +382,8 @@
                                 </div>
                             </a>
                         </li>--}}{{--
+--}}
+{{--
                         <li>
                             <a href="{{adminUrl('slider/create')}}">
                                 <div class="li-img">
@@ -280,7 +423,8 @@
                     </ul>
                 </div>
             </div>
-            <!-- end shortcuts section -->--}}
+            <!-- end shortcuts section -->--}}{{--
+
 
 
         </div>
@@ -289,3 +433,4 @@
 
 
 @endsection
+--}}

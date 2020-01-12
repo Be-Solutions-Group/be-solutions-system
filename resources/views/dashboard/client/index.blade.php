@@ -74,7 +74,7 @@
                             @foreach($clients as $client)
                                 <tr>
                                     <td>{{$client->id}}</td>
-                                    <td>{{assetPath($client->logo->path)}}</td>
+                                    <td><img src="{{assetPath($client->file->path)}}" style="height: 30px"></td>
                                     <td>{{$client->name}}</td>
                                     <td>{{$client->created_at ? $client->created_at->diffForHumans() : ''}}</td>
                                     <td>{{$client->updated_at ? $client->updated_at->diffForHumans() : ''}}</td>
