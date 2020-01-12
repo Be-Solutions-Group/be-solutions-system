@@ -42,7 +42,7 @@
     <div class="container-fluid">
         <div class="dot-color">
             <ul>
-                <li class="re"><span></span>  <p>data not completed</p></li>
+                <li class="re"><span></span>  <p>Data not completed</p></li>
                 <li class="or"><span></span>  <p>Waiting for programming</p></li>
                 <li class="gr"><span></span>  <p>Finish</p></li>
 
@@ -61,7 +61,7 @@
                 <th scope="col">Sales Man</th>
                 <th scope="col">Data  </th>
                 <th scope="col">Status</th>
-                <th scope="col">Contract Date</th>
+                {{--<th scope="col">Contract Date</th>--}}
                 <th scope="col">Design Started</th>
                 <th scope="col">Design Finish</th>
                 <th scope="col">Development Start</th>
@@ -87,12 +87,12 @@
                         <td>{{$project->member->username}} ({{$project->member->team->member->username}})</td>
                         <td><i class="fas {{!empty($project->content_id) ? 'fa-check text-success' : 'fa-times text-danger'}}" style="font-size: 25px"></i></td>
                         <td>{{$project->status->title}}</td>
-                        <td>{{$project->contract_date ? $project->contract_date->format('d M Y') : ''}}</td>
+                        {{--<td>{{$project->contract_date ? $project->contract_date->format('d M Y') : ''}}</td>--}}
                         <td>{{$project->projectTimeline->design_start ? $project->projectTimeline->design_start->format('d M Y') : ''}}</td>
                         <td>{{$project->projectTimeline->design_finish ? $project->projectTimeline->design_finish->format('d M Y') : ''}}</td>
                         <td>{{$project->projectTimeline->development_start ? $project->projectTimeline->development_start->format('d M Y') : ''}}</td>
                         <td>{{$project->projectTimeline->development_finish ? $project->projectTimeline->development_finish->format('d M Y') : ''}}</td>
-                        <td><i class="fas {{$project->deployed ? 'fa-check text-success' : 'fa-times text-danger'}}" style="font-size: 25px"></i></td>
+                        <td><i class="fas {{$project->projectTimeline->deployed == 1 ? 'fa-check text-success' : 'fa-times text-danger'}}" style="font-size: 25px"></i></td>
                     </tr>
                 @endforeach
             @endif
@@ -103,7 +103,7 @@
 </div>
 <!-- =====start copy===== -->
 <div class="copy">
-    Copyright 2020 Be Group
+    Copyright 2020 Be Solutions
 </div>
 <!-- =====end copy===== -->
 

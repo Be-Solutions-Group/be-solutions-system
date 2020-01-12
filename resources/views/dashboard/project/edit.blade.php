@@ -71,7 +71,7 @@
                                 <div class="col-lg-4">
                                     <label for="exampleInputEmail1">Sales Team</label>
                                     <select name="team_id" id="sales_team" class="form-control">
-                                        <option value="0">Choose Sales Team</option>
+                                        <option value="">Choose Sales Team</option>
                                         @foreach($salesTeams as $team)
                                             <option value="{{$team->id}}" {{$team->id == $project->member->team_id ? 'selected' : ''}}>{{$team->name}}</option>
                                         @endforeach
@@ -83,7 +83,7 @@
                                 <div class="col-lg-4">
                                     <label for="exampleInputEmail1">Sales Man</label>
                                     <select name="sales_man" id="sales_man" class="form-control">
-                                        <option value="0">Choose Sales Man</option>
+                                        <option value="">Choose Sales Man</option>
                                         @foreach($members as $member)
                                             <option value="{{$member->id}}" {{$member->id == $project->sales_man_id ? 'selected' : ''}}>{{$member->username}}</option>
                                         @endforeach
@@ -94,7 +94,7 @@
                                 <div class="col-lg-4">
                                     <label for="exampleInputEmail1">Status</label>
                                     <select name="status" id="sales_man" class="form-control">
-                                        <option value="0">Choose Project Status</option>
+                                        <option value="">Choose Project Status</option>
                                         @foreach($status as $item)
                                             <option value="{{$item->id}}" {{$item->id == $project->status_id ? 'selected' : ''}}>{{$item->title}}</option>
                                         @endforeach

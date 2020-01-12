@@ -41,7 +41,7 @@
 
     <section class="content">
         <div class="alert alert-circled alert-warning">
-            <strong>Note:</strong> Last Project Design Will Be Finished <strong>{{$lastProjectDesign->design_finish ? $lastProjectDesign->design_finish->format('d M Y') : ''}}</strong>
+            <strong>Note:</strong> Last Project Design Will Be Finished <strong>{{$lastProjectDesign->design_finish ? $lastProjectDesign->design_finish->format('d M Y') : ''}}</strong> <br>
             <strong>Note:</strong> Last Project Development Will Be Finished <strong>{{$lastProjectDevelopment->development_finish ? $lastProjectDevelopment->development_finish->format('d M Y') : ''}}</strong>
         </div>
 
@@ -78,7 +78,7 @@
                             <div class="col-lg-4">
                                 <label for="exampleInputEmail1">Sales Team</label>
                                 <select name="team_id" id="sales_team" class="form-control">
-                                    <option value="0">Choose Sales Team</option>
+                                    <option value="">Choose Sales Team</option>
                                     @foreach($salesTeams as $team)
                                         <option value="{{$team->id}}">{{$team->name}}</option>
                                     @endforeach
@@ -89,7 +89,7 @@
                             <div class="col-lg-4">
                                 <label for="exampleInputEmail1">Sales Man</label>
                                 <select name="sales_man" id="sales_man" class="form-control">
-                                    <option value="0">Choose Sales Man</option>
+                                    <option value="">Choose Sales Man</option>
                                     @foreach($members as $member)
                                         <option value="{{$member->id}}">{{$member->username}}</option>
                                     @endforeach
@@ -100,7 +100,7 @@
                             <div class="col-lg-4">
                                 <label for="exampleInputEmail1">Status</label>
                                 <select name="status" id="sales_man" class="form-control">
-                                    <option value="0">Choose Project Status</option>
+                                    <option value="">Choose Project Status</option>
                                     @foreach($status as $item)
                                         <option value="{{$item->id}}">{{$item->title}}</option>
                                     @endforeach

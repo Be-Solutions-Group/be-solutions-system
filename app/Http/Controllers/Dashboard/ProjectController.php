@@ -23,7 +23,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::with('member')->orderBy('created_at', 'desc')->get();
         return view('dashboard.project.index', compact('projects'));
     }
 
@@ -183,12 +183,14 @@ class ProjectController extends Controller
         $project->contract_date = \request('contract_date');
         $project->contract_id = $uploadedContractId;
         //Save Content
-        if (isset($request->image_id))
+
+        if (\request('content'))
         {
             $content = new Upload($request, 'content', 'projects', 'jpeg,jpg,png,gif,mp4,zip,rar,doc,docx');
             $uploadedContentId = $content->publicUpload();
             $project->content_id = $uploadedContentId;
         }
+
         $project->save();
 
         $project->projectTimeline()->create(['project_id', $project->id]);
@@ -249,7 +251,7 @@ class ProjectController extends Controller
             'sales_man'         => 'bail|required|int',
             'status'            => 'bail|required|int',
             'domain'            => 'bail|nullable|url',
-            'contract_date'     => 'bail|required',
+            'contract_date'     => 'bail',
             'contract'          => 'bail|mimes:jpeg,jpg,png,gif,mp4,pdf,doc,docx',
             'content'           => 'bail|nullable|mimes:jpeg,jpg,png,gif,mp4,zip,rar,doc,docx',
         ], [], [

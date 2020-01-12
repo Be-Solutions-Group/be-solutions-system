@@ -10,7 +10,7 @@ class WebsitePagesController extends Controller
 {
     public function lastAddedProjects()
     {
-        $projects = Project::with('projectTimeline')->orderBy('created_at', 'desc')->limit(10)->get();
+        $projects = Project::with('projectTimeline')->orderBy('created_at', 'desc')->get();
         return view('website.welcome', compact('projects'));
     }
 
